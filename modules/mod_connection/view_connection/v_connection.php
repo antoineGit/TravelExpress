@@ -36,7 +36,7 @@ class ViewConnection {
 	}
 	
 	public static function printConnectionSuccess(){
-		echo 'Welcome to you my friend';
+		echo 'Welcome to you my friend <a href="index.php?module=user">View your Profile</a>';
 	}
 }
 

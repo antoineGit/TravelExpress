@@ -57,6 +57,12 @@ function driverInscription(){
 							
 							<?php
 							if (isset ( $_SESSION ['id_user'] )) {
+								echo '<div>
+								<a href="index.php?module=user">Profile
+ 		</a>
+								</div>';
+								
+								
 								/*if ($_SESSION ['estAdmin']) {
 									echo ('
 											<span class="element-divider"></span>
@@ -91,9 +97,11 @@ if (! isset ( $_SESSION ['id_user'] ) || empty ( $_SESSION ['id_user'] )) {
 } else {
 	if (isset ( $_GET ['module'] ))
 		$module = $_GET ['module'];
-	else
-		echo'okidoki';
-		
+	else if(!isset ( $_GET ['module'] ) && !isset($_SESSION['id_user']))
+		$module = 'connection';
+	else 
+		$module = 'user';
+	
 		// Permet d'inclure un module au choix
 	if (isset ( $module )) {
 		require_once ("./modules/mod_$module/mod_$module.php");
