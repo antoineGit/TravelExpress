@@ -62,6 +62,12 @@ function driverInscription(){
  		</a>
 								</div>';
 								
+								if(isset($_SESSION['is_a_driver']) && ($_SESSION['is_a_driver'])==1){
+									echo '<div>
+								<a href="index.php?module=traject&action=create">Creer un trajet
+ 		</a>
+								</div>';
+								}
 								
 								/*if ($_SESSION ['estAdmin']) {
 									echo ('

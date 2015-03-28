@@ -11,8 +11,9 @@ class ControlerUser extends ControlerGeneric {
         	$carInfos = ModelUser::getCarInfo($idUser);
         	
         	$infos[0] = $userInfos;
-        	$infos[1] = $carInfos;
-        	?> <pre> <?php print_r($carInfos); ?> </pre> <?php
+        	if(isset($carInfos) && !empty($carInfos))
+        		$infos[1] = $carInfos[0];
+        	
         	$this->constructView("ViewUser", "printUserInfos",$infos);
         }
 

@@ -11,8 +11,10 @@
 				$idConnection = $enregistrement->idUser ;
 					
 			}
-				
-			if(isset($idConnection)){
+			
+			if(isset($idConnection) ){
+				$isDriver = ModelConnection::testIsDriver($idConnection);
+				$_SESSION['is_a_driver']=$isDriver['isDriver'];
 				$_SESSION['login_user']=$pseudo;
 				$_SESSION['id_user']=$idConnection;
 				return $idConnection;
@@ -29,5 +31,14 @@
 			else 
 				return false;
 		}	*/
+		private static function testIsDriver($idUser){
+			$req = self::$database->prepare("SELECT isDriver FROM amigo_User WHERE idUser=? ");
+			$req->execute(array($idUser));
+			$isDriver = $req->fetch(PDO::FETCH_ASSOC);
+			
+			return $isDriver;
+		}
+	
+	
 	}
 ?>

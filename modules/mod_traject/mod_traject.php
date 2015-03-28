@@ -2,7 +2,7 @@
 class Moduletraject extends ModuleGeneric{
   public function __construct(){
     $module = "traject";
-    $action = "voir";
+    $action = "create";
     if(isset($_GET['action']))
       $action = $_GET['action'];
 
@@ -12,6 +12,11 @@ class Moduletraject extends ModuleGeneric{
             $this->controler = new ControlerTraject();
             $this->controler->printTrajectHome();
         break;
+        case 'create':
+        	require_once ("modules/mod_$module/controler_$module/c_$module.php");
+        	$this->controler = new ControlerTraject();
+        	$this->controler->printCreationForm();
+        	break;
 
     }
   }
