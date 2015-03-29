@@ -12,7 +12,16 @@ class Moduleuser extends ModuleGeneric{
             $this->controler = new ControlerUser();
             $this->controler->printUserInfo();
         break;
-
+        case 'addCar':
+        	require_once ("modules/mod_$module/controler_$module/c_user.php");
+        	$this->controler = new ControlerUser();
+        	$this->controler->addCar();
+        	break;
+        case 'delCar':
+        	require_once ("modules/mod_$module/controler_$module/c_user.php");
+        	$this->controler = new ControlerUser();
+        	$this->controler->delCar();
+        	break;
     }
   }
 

@@ -45,26 +45,29 @@ function driverInscription(){
 	<div>
 		<div> 
 			<div>
-				<h1 >PROJECT</h1>
+				<h1 >TRAVEL EXPRESS</h1>
 			</div>
 
 			<div>
 				<div>
 					<nav>
-							<div>
+							<div style="display:inline-block;margin-right:20px;">
 								<a href="index.php">home</a>
 							</div>
 							
 							<?php
 							if (isset ( $_SESSION ['id_user'] )) {
-								echo '<div>
-								<a href="index.php?module=user">Profile
- 		</a>
+								echo '
+ 								<div style="display:inline-block;margin-right:20px;">
+									<a href="index.php?module=user"> Profile</a>
+								</div>
+ 								<div style="display:inline-block;margin-right:20px;">
+									<a href="index.php?module=traject"> Trajets</a>
 								</div>';
 								
 								if(isset($_SESSION['is_a_driver']) && ($_SESSION['is_a_driver'])==1){
-									echo '<div>
-								<a href="index.php?module=traject&action=create">Creer un trajet
+									echo '<div style="display:inline-block;margin-right:20px;">
+								<a href="index.php?module=traject&action=create"> Creer un trajet
  		</a>
 								</div>';
 								}
@@ -81,9 +84,9 @@ function driverInscription(){
 								}*/
 								// Affichage du bouton de d�connexion uniquement si l'utilisateur est d�j� connect�
 								echo ('
-										<div>
+										<div style="display:inline-block;margin-right:20px;">
 										<a href=" ' . htmlspecialchars ( "index.php?module=connection&action=deconnection" ) . '">
-										Log Out
+										 Log Out
 										</a>
 										</div>
 									');

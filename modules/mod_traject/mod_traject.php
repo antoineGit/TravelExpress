@@ -2,7 +2,7 @@
 class Moduletraject extends ModuleGeneric{
   public function __construct(){
     $module = "traject";
-    $action = "create";
+    $action = "voir";
     if(isset($_GET['action']))
       $action = $_GET['action'];
 

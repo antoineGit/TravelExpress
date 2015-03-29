@@ -62,7 +62,7 @@ class ViewUser{
 								--------No ...
 									</div>';
 							
-								else
+								else{
 									echo '
 							<label>A ete conducteur : </label>
 							<div>
@@ -82,41 +82,119 @@ class ViewUser{
               					 -------- '.$infosUser[0]['licenseDate'].'
 							</div>
 				
-						</fieldset>
+						</fieldset>';
+        for($i=0;$i<count($infosCar);$i++)	{	 		
+        		echo'
 						<fieldset>
 							<legend>Voiture</legend>
 							
 							<label>Marque</label>
 							<div>
-              					 -------- '.$infosCar['brand'].'
+              					 -------- '.$infosCar[$i]['brand'].'
 							</div>
 				
 							<label>Modele</label>
 							<div>
-              					 -------- '.$infosCar['model'].'
+              					 -------- '.$infosCar[$i]['model'].'
 							</div>
 					
 							<label>Année</label>
 							<div>
-								 -------- '.$infosCar['purchaseDate'].'
+								 -------- '.$infosCar[$i]['purchaseDate'].'
 							</div>
 									
 							<label>Couleur</label>
 							<div>
-              					 -------- '.$infosCar['color'].'
+              					 -------- '.$infosCar[$i]['color'].'
 							</div>
 									
 							<label>Etat</label>
 							<div>
-              					 -------- '.$infosCar['state'].'
+              					 -------- '.$infosCar[$i]['state'].'
 							</div>
+              					 		
+              			
 							' ;
-								
-		echo "</fieldset>";
-		
+        		if($_SESSION['is_a_driver'])
+        			echo '
+											<div>
+              					 <a href="index.php?module=user&action=delCar&id='.$infosCar[$i]['idCar'].'"> <button>Supprimer cette voiture</button> </a>
+									</div>
+							</fieldset>				';
+         }		
+								if($_SESSION['is_a_driver'])
+									echo '
+											<div>
+              					 <a href="index.php?module=user&action=addCar"> <button>Ajouter une voiture</button> </a>
+									</div>
+											';
+       		
+        }
 	}
 	
+	public static function printFormCreateCar(){
+		echo ('
+				<form method=post action="index.php?module=user&action=addCar">
+				<fieldset>
+							<legend>Voiture</legend>
+							
+							<label>Marque</label>
+							<div>
+              					<input id="driverRequired" name="brand" type="text" placeholder="ford" required="false"  >
+							</div>
+				
+							<label>Modele</label>
+							<div>
+              					<input id="driverRequired" name="model" type="text" placeholder="fiesta" required="false"  >
+							</div>
+					
+							<label>Année</label>
+							<div>
+								<select id="driverRequired" name="carAge" size="1" required="false" >
+        ');
+		
+		for($i=date("Y");$i>(date("Y")-60);$i-- ){
+			echo "<option>$i";
+		}
+		
+		echo ('
+								</select>
+							</div>
+				
+							<label>Couleur</label>
+							<div>
+              					<input id="driverRequired" name="color" type="text" placeholder="rouge" required="false"  >
+							</div>
+							
+							<label>Etat</label>
+							<div>
+              					<input id="driverRequired" name="state" type="radio" value="new"  required="false" >Neuve
+								<input id="driverRequired" name="state" type="radio" value="correct"  required="false" >Correcte
+								<input id="driverRequired" name="state" type="radio" value="damaged" required="false"  >Endommagée
+							</div>
+						</fieldset>
+				<div>
+							
+								<a  href="index.php?module=user">
+									<input type="button" value="Annuler">
+								</a>
+								<input type="submit" value="Ajouter">
+							</div>
+					</form>
+				');
+	}
 	
+	public static function printSuccessCreateCar(){
+		echo "nouvelle voiture ajoutée";
+	}
+
+	public static function printFailCreateCar(){
+		echo "L'ajout de la voiture à rencontré un problème ...";
+	}
+	
+	public static function printErrorDelete(){
+		echo "Suppression de la voiture échouée ...";
+	}
 }
 
 
