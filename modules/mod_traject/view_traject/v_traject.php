@@ -187,8 +187,10 @@ class ViewTraject{
 							<div>
 								-----'.$traject['price'].'
 								
-							
 							</div>	
+							';
+							if($traject['nbReservation']>0)
+							echo '
 							<a href="index.php?module=traject&action=reserve&id='.$traject['idPath'].'"><button>Reserver</button></a>
 							
 						</fieldset>
@@ -243,8 +245,12 @@ class ViewTraject{
 							<div>
 								-----'.$traject[$i]['price'].'
 							</div>	
-						</fieldset>
 										</a>
+									';
+										if($_SESSION['id_user']==$traject[$i]['idUser'])	
+											echo '
+										<a href="index.php?module=traject&action=del&idT='.$traject[$i]['idPath'].'"><button>Supprimer<button></a>
+						</fieldset>
 		';
 		}
 	}
@@ -261,6 +267,9 @@ class ViewTraject{
 		echo "reservation failed";
 	}
 	
+	public static function isAlreadyCreate(){
+		echo "un Trajet semblable à déjà été créé";
+	}
 }
 
 

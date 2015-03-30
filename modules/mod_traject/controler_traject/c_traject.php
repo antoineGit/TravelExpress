@@ -3,6 +3,17 @@ $module = "traject";
 require_once ("./modules/mod_$module/view_$module/v_$module.php");
 require_once ("./modules/mod_$module/model_$module/m_$module.php");
 class ControlerTraject extends ControlerGeneric {
+	function del(){
+		if($_GET['idT']){
+			$idPath = $_GET['idT'];
+			$idUser = $_SESSION['id_user'];
+			
+			ModelTraject::delTraject($idUser,$idPath);
+			ModelTraject::delReserved($idPath);
+			
+			$this->printTrajectHome();
+		}
+	}
 	function getTrajectsReserved(){
 		if (isset($_SESSION['id_user'])&&!empty($_SESSION['id_user'])){
 			$idUser = $_SESSION['id_user'];
@@ -63,8 +74,13 @@ class ControlerTraject extends ControlerGeneric {
 				$nbPassenger = $_POST ['nbPassenger'];
 				$nbReservation = $_POST ['nbReservation'];
 				
-				ModelTraject::createTraject ( $idUser, $idCar, $date, $departureCity, $departureAddress, $departureHour, $arrivalCity, $arrivalAddress, $nbPassenger, $nbReservation, $smoking, $animals, $talker, $music, $luggage, $price );
-				$this->constructView ( "ViewTraject", "createTrajectSuccess", array () );
+				$isAlreadyCreate = ModelTraject::isAlreadyCreate($idUser,$date,$departureHour);
+				
+				if(!$isAlreadyCreate){
+					ModelTraject::createTraject ( $idUser, $idCar, $date, $departureCity, $departureAddress, $departureHour, $arrivalCity, $arrivalAddress, $nbPassenger, $nbReservation, $smoking, $animals, $talker, $music, $luggage, $price );
+					$this->constructView ( "ViewTraject", "createTrajectSuccess", array () );
+				}else 
+					$this->constructView("ViewTraject", "isAlreadyCreate", array());
 			} else
 				$this->constructView ( "ViewTraject", "createTraject", array () );
 		}

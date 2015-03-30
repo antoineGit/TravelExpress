@@ -26,6 +26,7 @@ DBMapper::init ( $connection );
 <link href="css/my-css.css" rel="stylesheet">
 <link href="css/metro-bootstrap.css" rel="stylesheet">
 <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+<link href="./bootstrap/csss/bootsrap.min.css" rel="stylesheet">
 
 <title>PROJECT</title>
 </head>
@@ -50,20 +51,21 @@ function driverInscription(){
 
 			<div>
 				<div>
+				
 					<nav>
 							<div style="display:inline-block;margin-right:20px;">
 								<a href="index.php">home</a>
 							</div>
-							
+							<div style="display:inline-block;margin-right:20px;">
+									<a href="index.php?module=traject"> Trajets</a>
+								</div>
 							<?php
 							if (isset ( $_SESSION ['id_user'] )) {
 								echo '
  								<div style="display:inline-block;margin-right:20px;">
 									<a href="index.php?module=user"> Profile</a>
 								</div>
- 								<div style="display:inline-block;margin-right:20px;">
-									<a href="index.php?module=traject"> Trajets</a>
-								</div>
+ 								
  								<div style="display:inline-block;margin-right:20px;">
 									<a href="index.php?module=traject&action=reserver"> Reservation</a>
 								</div>';

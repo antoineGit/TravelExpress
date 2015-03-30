@@ -28,7 +28,12 @@ class Moduletraject extends ModuleGeneric{
 			$this->controler = new ControlerTraject();
 			$this->controler->getTrajectsReserved();
 			break;
-			
+		case 'del':
+			require_once ("modules/mod_$module/controler_$module/c_$module.php");
+			$this->controler = new ControlerTraject();
+			if($_GET['idT'])
+				$this->controler->del();
+			break;
 
     }
   }
