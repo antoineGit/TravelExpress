@@ -3,6 +3,7 @@ $module = "user";
 require_once ("./modules/mod_$module/view_$module/v_$module.php");
 require_once ("./modules/mod_$module/model_$module/m_$module.php");
 class ControlerUser extends ControlerGeneric {
+	
     function printUserInfo(){
         if (isset($_SESSION['id_user'])&&!empty($_SESSION['id_user'])){
         	$idUser = $_SESSION['id_user'];

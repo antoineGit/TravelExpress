@@ -63,6 +63,9 @@ function driverInscription(){
 								</div>
  								<div style="display:inline-block;margin-right:20px;">
 									<a href="index.php?module=traject"> Trajets</a>
+								</div>
+ 								<div style="display:inline-block;margin-right:20px;">
+									<a href="index.php?module=traject&action=reserver"> Reservation</a>
 								</div>';
 								
 								if(isset($_SESSION['is_a_driver']) && ($_SESSION['is_a_driver'])==1){

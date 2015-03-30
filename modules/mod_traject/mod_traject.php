@@ -17,6 +17,18 @@ class Moduletraject extends ModuleGeneric{
         	$this->controler = new ControlerTraject();
         	$this->controler->printCreationForm();
         	break;
+		case 'reserve':
+        	require_once ("modules/mod_$module/controler_$module/c_$module.php");
+       		$this->controler = new ControlerTraject();
+       		if($_GET['id'])
+       			$this->controler->reservation();
+       		break;
+		case 'reserver' : 
+			require_once ("modules/mod_$module/controler_$module/c_$module.php");
+			$this->controler = new ControlerTraject();
+			$this->controler->getTrajectsReserved();
+			break;
+			
 
     }
   }

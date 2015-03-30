@@ -189,6 +189,7 @@ class ViewTraject{
 								
 							
 							</div>	
+							<a href="index.php?module=traject&action=reserve&id='.$traject['idPath'].'"><button>Reserver</button></a>
 							
 						</fieldset>
 				';
@@ -250,6 +251,14 @@ class ViewTraject{
 	
 	public static function printError(){
 		echo "ERROR 404";
+	}
+	
+	public static function reservationSuccess(){
+		echo "Reservation réussie";
+	}
+	
+	public static function reservationFailed(){
+		echo "reservation failed";
 	}
 	
 }
