@@ -72,12 +72,13 @@ class ModelTraject extends DBMapper {
 	}
 	public static function hasAlreadyReserved($idUser,$idPath){
 		$req = self::$database->prepare("SELECT idUser FROM amigo_Reserved WHERE idUser=? AND idPath=?");
-		$count = $req->execute(array($idUser,$idPath));
-		
-		if ($count === false || $count === 0)
+		$req->execute(array($idUser,$idPath));
+		$count = $req->fetch(PDO::FETCH_ASSOC);
+		if ($count === false || $count === 0){
 			return false;
-		else
+		}else{
 			return true;
+		}
 	}
 	public static function getTraject($id) {
 		$req = self::$database->prepare ( 'SELECT * FROM amigo_Path WHERE idPath = ?' );
@@ -98,17 +99,17 @@ class ModelTraject extends DBMapper {
 					$idUser,
 					$idPath 
 			) );
-			$req = self::$database->prepare ( "UPDATE amigo_Path SET nbReservation=nbReservation-1 WHERE idPath=? AND idUser=?" );
+			$req = self::$database->prepare ( "UPDATE amigo_Path SET nbReservation=nbReservation-1 WHERE idPath=?" );
 			$count = $req->execute ( array (
 					$idPath,
-					$idUser 
 			) );
-			if ($count === false || $count === 0)
+			if ($count === false || $count === 0){
 				return false;
-			else
+			}else
 				return true;
-		} else
+		} else{
 			return false;
+		}
 	}
 }
 

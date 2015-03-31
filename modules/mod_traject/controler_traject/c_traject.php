@@ -17,12 +17,15 @@ class ControlerTraject extends ControlerGeneric {
 	function getTrajectsReserved(){
 		if (isset($_SESSION['id_user'])&&!empty($_SESSION['id_user'])){
 			$idUser = $_SESSION['id_user'];
-				
 			$idPath = ModelTraject::getTrajectReserved($idUser);
+			
+			if(!empty($idPath)){
 			for($i=0;$i<count($idPath);$i++){
 				$infosTraject[$i] = ModelTraject::getTraject($idPath[$i]['idPath']);
 			}
 				$this->constructView("ViewTraject", "reductTraject", array($infosTraject));
+			}else $this->constructView("ViewTraject", "noReservation", array());
+			
 		}
 	}
 	

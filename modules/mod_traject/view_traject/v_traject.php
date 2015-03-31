@@ -192,8 +192,8 @@ class ViewTraject{
 							if($traject['nbReservation']>0)
 							echo '
 							<a href="index.php?module=traject&action=reserve&id='.$traject['idPath'].'"><button>Reserver</button></a>
-							
-						</fieldset>
+							';
+					echo'	</fieldset>
 				';
 	}
 	public static function reductTraject($traject){
@@ -249,9 +249,8 @@ class ViewTraject{
 									';
 										if($_SESSION['id_user']==$traject[$i]['idUser'])	
 											echo '
-										<a href="index.php?module=traject&action=del&idT='.$traject[$i]['idPath'].'"><button>Supprimer<button></a>
-						</fieldset>
-		';
+										<a href="index.php?module=traject&action=del&idT='.$traject[$i]['idPath'].'"><button>Supprimer<button></a>';
+					echo'	</fieldset>';
 		}
 	}
 	
@@ -269,6 +268,10 @@ class ViewTraject{
 	
 	public static function isAlreadyCreate(){
 		echo "un Trajet semblable à déjà été créé";
+	}
+	
+	public static function noReservation(){
+		echo "Vous n'avez aucunes réservations en attente";
 	}
 }
 
